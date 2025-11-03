@@ -42,7 +42,8 @@ namespace Clinic___Patient_Management_System.VIEW
                     p.Address,
                     p.Sex,
                     p.ContactNo,
-                    p.Email,
+                    p.Email, 
+                    "View", 
                     "Edit", "Delete"
                 );
             }
@@ -91,33 +92,47 @@ namespace Clinic___Patient_Management_System.VIEW
 
             switch (e.ColumnIndex)
             {
-                case 7:
-                    addPatient frm = new addPatient(this);
+                case 7: // 🩺 VIEW MEDICAL HISTORY
+                    {
+                        string patientName = dgv_patientRecord.Rows[e.RowIndex].Cells["Name"].Value.ToString();
 
-         
-                    string name = dgv_patientRecord.Rows[e.RowIndex].Cells["Name"].Value.ToString();
-                    string age = dgv_patientRecord.Rows[e.RowIndex].Cells["Age"].Value.ToString();
-                    string address = dgv_patientRecord.Rows[e.RowIndex].Cells["Address"].Value.ToString();
-                    string sex = dgv_patientRecord.Rows[e.RowIndex].Cells["Sex"].Value.ToString();
-                    string contact = dgv_patientRecord.Rows[e.RowIndex].Cells["ContactNo"].Value.ToString();
-                    string email = dgv_patientRecord.Rows[e.RowIndex].Cells["Email"].Value.ToString();
+                        MedicalHistory form = new MedicalHistory(patientId, patientName);
+                        form.ShowDialog();
+                        break;
+                    }
 
-                    // Split the address into its parts
-                    string[] parts = address.Split(',');
-                    string streetNo = parts.Length > 0 ? parts[0].Trim() : "";
-                    string brgy = parts.Length > 1 ? parts[1].Trim() : "";
-                    string city = parts.Length > 2 ? parts[2].Trim() : "";
-                    string province = parts.Length > 3 ? parts[3].Trim() : "";
+                case 8: // ✏️ EDIT PATIENT
+                    {
+                        addPatient frm = new addPatient(this);
 
-                    // Pass data to the Add/Edit form
-                    frm.PatientID = patientId;
-                    frm.FillPatientData(name, age, province, city, brgy, streetNo, sex, contact, email);
+                        string name = dgv_patientRecord.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                        string age = dgv_patientRecord.Rows[e.RowIndex].Cells["Age"].Value.ToString();
+                        string address = dgv_patientRecord.Rows[e.RowIndex].Cells["Address"].Value.ToString();
+                        string sex = dgv_patientRecord.Rows[e.RowIndex].Cells["Sex"].Value.ToString();
+                        string contact = dgv_patientRecord.Rows[e.RowIndex].Cells["ContactNo"].Value.ToString();
+                        string email = dgv_patientRecord.Rows[e.RowIndex].Cells["Email"].Value.ToString();
 
-                    frm.ShowDialog();
-                    break;
+                        // Split the address into its parts
+                        string[] parts = address.Split(',');
+                        string streetNo = parts.Length > 0 ? parts[0].Trim() : "";
+                        string brgy = parts.Length > 1 ? parts[1].Trim() : "";
+                        string city = parts.Length > 2 ? parts[2].Trim() : "";
+                        string province = parts.Length > 3 ? parts[3].Trim() : "";
 
-                case 8: // DELETE PATIENT
-                    _presenter.DeletePatient(patientId);
+                        // Pass data to the Add/Edit form
+                        frm.PatientID = patientId;
+                        frm.FillPatientData(name, age, province, city, brgy, streetNo, sex, contact, email);
+                        frm.ShowDialog();
+                        break;
+                    }
+
+                case 9: // ❌ DELETE PATIENT
+                    {
+                        _presenter.DeletePatient(patientId);
+                        break;
+                    }
+
+                default:
                     break;
             }
         }

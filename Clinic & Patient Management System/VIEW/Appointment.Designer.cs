@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dgv_appointmentRecord = new System.Windows.Forms.DataGridView();
-            this.btn_addAppointment = new System.Windows.Forms.Button();
             this.txt_searchAppointment = new System.Windows.Forms.TextBox();
             this.appointmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +41,8 @@
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deleteAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.AddConsultation = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Payment = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_appointmentRecord)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,22 +61,14 @@
             this.endTime,
             this.status,
             this.editAppointment,
-            this.deleteAppointment});
+            this.deleteAppointment,
+            this.AddConsultation,
+            this.Payment});
             this.dgv_appointmentRecord.Location = new System.Drawing.Point(15, 51);
             this.dgv_appointmentRecord.Name = "dgv_appointmentRecord";
-            this.dgv_appointmentRecord.Size = new System.Drawing.Size(1246, 427);
+            this.dgv_appointmentRecord.Size = new System.Drawing.Size(1348, 427);
             this.dgv_appointmentRecord.TabIndex = 0;
-            // 
-            // btn_addAppointment
-            // 
-            this.btn_addAppointment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_addAppointment.Location = new System.Drawing.Point(1007, 12);
-            this.btn_addAppointment.Name = "btn_addAppointment";
-            this.btn_addAppointment.Size = new System.Drawing.Size(254, 33);
-            this.btn_addAppointment.TabIndex = 4;
-            this.btn_addAppointment.Text = "ADD AN APPOINTMENT";
-            this.btn_addAppointment.UseVisualStyleBackColor = true;
-            this.btn_addAppointment.Click += new System.EventHandler(this.btn_addAppointment_Click);
+            this.dgv_appointmentRecord.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_appointmentRecord_CellContentClick);
             // 
             // txt_searchAppointment
             // 
@@ -145,13 +138,26 @@
             this.deleteAppointment.HeaderText = "Delete";
             this.deleteAppointment.Name = "deleteAppointment";
             // 
+            // AddConsultation
+            // 
+            this.AddConsultation.HeaderText = "Add Consultation";
+            this.AddConsultation.Name = "AddConsultation";
+            this.AddConsultation.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AddConsultation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Payment
+            // 
+            this.Payment.HeaderText = "Payment";
+            this.Payment.Name = "Payment";
+            this.Payment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Payment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // Appointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1273, 495);
+            this.ClientSize = new System.Drawing.Size(1419, 537);
             this.Controls.Add(this.txt_searchAppointment);
-            this.Controls.Add(this.btn_addAppointment);
             this.Controls.Add(this.dgv_appointmentRecord);
             this.Name = "Appointment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -165,7 +171,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_appointmentRecord;
-        private System.Windows.Forms.Button btn_addAppointment;
         private System.Windows.Forms.TextBox txt_searchAppointment;
         private System.Windows.Forms.DataGridViewTextBoxColumn appointmentID;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientID;
@@ -178,5 +183,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.DataGridViewButtonColumn editAppointment;
         private System.Windows.Forms.DataGridViewButtonColumn deleteAppointment;
+        private System.Windows.Forms.DataGridViewButtonColumn AddConsultation;
+        private System.Windows.Forms.DataGridViewButtonColumn Payment;
     }
 }
