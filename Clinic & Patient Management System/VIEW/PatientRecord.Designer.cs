@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.dgv_patientRecord = new System.Windows.Forms.DataGridView();
+            this.btn_addPatient = new System.Windows.Forms.Button();
+            this.txt_searchPatient = new System.Windows.Forms.TextBox();
             this.patientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.age = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,10 +38,9 @@
             this.sex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contactNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewMH = new System.Windows.Forms.DataGridViewButtonColumn();
             this.edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btn_addPatient = new System.Windows.Forms.Button();
-            this.txt_searchPatient = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_patientRecord)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,66 +56,14 @@
             this.sex,
             this.contactNo,
             this.email,
+            this.ViewMH,
             this.edit,
             this.delete});
-            this.dgv_patientRecord.Location = new System.Drawing.Point(15, 51);
+            this.dgv_patientRecord.Location = new System.Drawing.Point(12, 67);
             this.dgv_patientRecord.Name = "dgv_patientRecord";
-            this.dgv_patientRecord.Size = new System.Drawing.Size(1577, 600);
+            this.dgv_patientRecord.Size = new System.Drawing.Size(1580, 561);
             this.dgv_patientRecord.TabIndex = 0;
             this.dgv_patientRecord.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_patientRecord_CellContentClick);
-            // 
-            // patientID
-            // 
-            this.patientID.HeaderText = "PatientID";
-            this.patientID.Name = "patientID";
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.Width = 350;
-            // 
-            // age
-            // 
-            this.age.HeaderText = "Age";
-            this.age.Name = "age";
-            this.age.Width = 35;
-            // 
-            // address
-            // 
-            this.address.HeaderText = "Address";
-            this.address.Name = "address";
-            this.address.Width = 400;
-            // 
-            // sex
-            // 
-            this.sex.HeaderText = "Sex";
-            this.sex.Name = "sex";
-            this.sex.Width = 50;
-            // 
-            // contactNo
-            // 
-            this.contactNo.HeaderText = "Contact No.";
-            this.contactNo.Name = "contactNo";
-            this.contactNo.Width = 200;
-            // 
-            // email
-            // 
-            this.email.HeaderText = "Email";
-            this.email.Name = "email";
-            this.email.Width = 300;
-            // 
-            // edit
-            // 
-            this.edit.HeaderText = "Edit";
-            this.edit.Name = "edit";
-            this.edit.Width = 50;
-            // 
-            // delete
-            // 
-            this.delete.HeaderText = "Delete";
-            this.delete.Name = "delete";
-            this.delete.Width = 50;
             // 
             // btn_addPatient
             // 
@@ -137,6 +86,67 @@
             this.txt_searchPatient.TabIndex = 2;
             this.txt_searchPatient.Enter += new System.EventHandler(this.txt_searchPatient_Enter);
             this.txt_searchPatient.Leave += new System.EventHandler(this.txt_searchPatient_Leave);
+            // 
+            // patientID
+            // 
+            this.patientID.HeaderText = "PatientID";
+            this.patientID.Name = "patientID";
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.Width = 350;
+            // 
+            // age
+            // 
+            this.age.HeaderText = "Age";
+            this.age.Name = "age";
+            this.age.Width = 35;
+            // 
+            // address
+            // 
+            this.address.HeaderText = "Address";
+            this.address.Name = "address";
+            this.address.Width = 350;
+            // 
+            // sex
+            // 
+            this.sex.HeaderText = "Sex";
+            this.sex.Name = "sex";
+            this.sex.Width = 50;
+            // 
+            // contactNo
+            // 
+            this.contactNo.HeaderText = "Contact No.";
+            this.contactNo.Name = "contactNo";
+            this.contactNo.Width = 200;
+            // 
+            // email
+            // 
+            this.email.HeaderText = "Email";
+            this.email.Name = "email";
+            this.email.Width = 300;
+            // 
+            // ViewMH
+            // 
+            this.ViewMH.HeaderText = "Medical History";
+            this.ViewMH.Name = "ViewMH";
+            this.ViewMH.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ViewMH.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ViewMH.Width = 60;
+            // 
+            // edit
+            // 
+            this.edit.HeaderText = "Edit";
+            this.edit.Name = "edit";
+            this.edit.Width = 50;
+            // 
+            // delete
+            // 
+            this.delete.HeaderText = "Delete";
+            this.delete.Name = "delete";
+            this.delete.Width = 50;
             // 
             // PatientRecord
             // 
@@ -167,6 +177,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sex;
         private System.Windows.Forms.DataGridViewTextBoxColumn contactNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewButtonColumn ViewMH;
         private System.Windows.Forms.DataGridViewButtonColumn edit;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
     }

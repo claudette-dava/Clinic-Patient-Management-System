@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clinic___Patient_Management_System.VIEW;
 
 namespace Clinic___Patient_Management_System.VIEW
 {
@@ -75,7 +76,9 @@ namespace Clinic___Patient_Management_System.VIEW
                     endTime,          // End Time
                     status,           // Status
                     "Edit",           // Edit column
-                    "Delete"          // Delete column
+                    "Delete" ,         // Delete column
+                    "View", 
+                    "Pay"
                 );
             }
 
@@ -90,9 +93,117 @@ namespace Clinic___Patient_Management_System.VIEW
 
         private void btn_addAppointment_Click(object sender, EventArgs e)
         {
-           
+
         }
-     
+
+        private void dgv_appointmentRecord_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            string columnName = dgv_appointmentRecord.Columns[e.ColumnIndex].Name;
+
+            
+            if (columnName == "AddConsultation")
+            {
+                string status = dgv_appointmentRecord.Rows[e.RowIndex].Cells["status"].Value.ToString();
+
+              
+                if (status != "Scheduled")
+                {
+                    MessageBox.Show("Consultation can only be added for scheduled appointments.",
+                        "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                
+                int appointmentID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["AppointmentID"].Value);
+                int scheduleID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["ScheduleID"].Value);
+                int timeslotID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["TimeSlotID"].Value);
+                string doctorName = dgv_appointmentRecord.Rows[e.RowIndex].Cells["DoctorName"].Value.ToString();
+                string patientName = dgv_appointmentRecord.Rows[e.RowIndex].Cells["patientID"].Value.ToString();
+                string scheduleDate = dgv_appointmentRecord.Rows[e.RowIndex].Cells["date"].Value.ToString();
+
+             
+                int doctorID = GetDoctorID(appointmentID);
+                int patientID = GetPatientID(appointmentID);
+
+                addConsulation frm = new addConsulation(
+                    appointmentID,
+                    doctorID,
+                    patientID,
+                    doctorName,
+                    patientName,
+                    scheduleDate
+                );
+
+              
+                frm.ConsultationSaved += () =>
+                {
+                    UpdateAppointmentStatus(appointmentID, "Completed");
+                    _presenter.LoadAppointments(); // refresh grid after update
+                };
+
+                frm.ShowDialog();
+            }
+
+        
+            else if (columnName == "Payment")
+            {
+                string status = dgv_appointmentRecord.Rows[e.RowIndex].Cells["Status"].Value.ToString();
+
+              
+                if (status != "Completed")
+                {
+                    MessageBox.Show("Only completed consultations can proceed to payment.",
+                        "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int appointmentID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["AppointmentID"].Value);
+                string patientName = dgv_appointmentRecord.Rows[e.RowIndex].Cells["patientID"].Value.ToString();
+                string doctorName = dgv_appointmentRecord.Rows[e.RowIndex].Cells["DoctorName"].Value.ToString();
+                string appointmentDate = dgv_appointmentRecord.Rows[e.RowIndex].Cells["date"].Value.ToString();
+
+                int doctorID = GetDoctorID(appointmentID);
+                int patientID = GetPatientID(appointmentID);
+
+                addPayment frm = new addPayment(appointmentID, patientID, doctorID, patientName, doctorName, appointmentDate);
+                frm.PaymentSaved += () => _presenter.LoadAppointments();
+                frm.ShowDialog();
+            }
+        }
+        private int GetDoctorID(int appointmentID)
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=CJ-PC;Initial Catalog=Clinic_and_Patient_db;Integrated Security=True;"))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT DoctorID FROM tbl_appointment WHERE AppointmentID = @id", con);
+                cmd.Parameters.AddWithValue("@id", appointmentID);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        private int GetPatientID(int appointmentID)
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=CJ-PC;Initial Catalog=Clinic_and_Patient_db;Integrated Security=True;"))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT PatientID FROM tbl_appointment WHERE AppointmentID = @id", con);
+                cmd.Parameters.AddWithValue("@id", appointmentID);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+        private void UpdateAppointmentStatus(int appointmentID, string newStatus)
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=CJ-PC;Initial Catalog=Clinic_and_Patient_db;Integrated Security=True;"))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE tbl_appointment SET Status = @status WHERE AppointmentID = @id", con);
+                cmd.Parameters.AddWithValue("@status", newStatus);
+                cmd.Parameters.AddWithValue("@id", appointmentID);
+                cmd.ExecuteNonQuery();
+            }
+        }
 
     }
 }

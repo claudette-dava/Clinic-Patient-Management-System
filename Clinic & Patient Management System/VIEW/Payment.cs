@@ -40,8 +40,7 @@ namespace Clinic___Patient_Management_System.VIEW
 
         private void btn_addPayment_Click(object sender, EventArgs e)
         {
-            addPayment addpay = new addPayment();
-            addpay.ShowDialog();
+          
         }
     }
 }

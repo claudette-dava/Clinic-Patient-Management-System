@@ -47,11 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MODEL\AddAppointmentModel.cs" />
+    <Compile Include="MODEL\AddConsultationModel.cs" />
     <Compile Include="MODEL\AddDoctorModel.cs" />
     <Compile Include="MODEL\AddPatientModel.cs" />
     <Compile Include="MODEL\AppointmentModel.cs" />
+    <Compile Include="MODEL\ConsultationModel.cs" />
     <Compile Include="MODEL\DoctorModel.cs" />
+    <Compile Include="MODEL\MedicalHistoryModel.cs" />
     <Compile Include="MODEL\PatientModel.cs" />
+    <Compile Include="MODEL\PaymentModel.cs" />
     <Compile Include="MODEL\ScheduleDoctorModel.cs" />
     <Compile Include="OTHERS\LogIn.cs">
       <SubType>Form</SubType>
@@ -66,10 +70,14 @@
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PRESENTER\AddAppointmentPresenter.cs" />
+    <Compile Include="PRESENTER\AddConsultationPresenter.cs" />
     <Compile Include="PRESENTER\AddDoctorPresenter.cs" />
     <Compile Include="PRESENTER\AddPatientPresenter.cs" />
+    <Compile Include="PRESENTER\AddPaymentPresenter.cs" />
     <Compile Include="PRESENTER\AppointmentPresenter.cs" />
+    <Compile Include="PRESENTER\ConsultationPresenter.cs" />
     <Compile Include="PRESENTER\DoctorRecordPresenter.cs" />
+    <Compile Include="PRESENTER\MedicalHistoryPresenter.cs" />
     <Compile Include="PRESENTER\PatientRecordPresenter.cs" />
     <Compile Include="PRESENTER\ScheduleDoctorPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -135,12 +143,22 @@
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\Interfaces\IAddAppointmentView.cs" />
+    <Compile Include="VIEW\Interfaces\IAddConsultationView.cs" />
     <Compile Include="VIEW\Interfaces\IAddDoctorView.cs" />
     <Compile Include="VIEW\Interfaces\IAddPatientView.cs" />
+    <Compile Include="VIEW\Interfaces\IAddPaymentView.cs" />
     <Compile Include="VIEW\Interfaces\IAppointmentView.cs" />
+    <Compile Include="VIEW\Interfaces\IConsultationView.cs" />
     <Compile Include="VIEW\Interfaces\IDoctorRecordView.cs" />
+    <Compile Include="VIEW\Interfaces\IMedicalHistoryView.cs" />
     <Compile Include="VIEW\Interfaces\IPatientRecordView.cs" />
     <Compile Include="VIEW\Interfaces\IScheduleDoctorView.cs" />
+    <Compile Include="VIEW\MedicalHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\MedicalHistory.Designer.cs">
+      <DependentUpon>MedicalHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\PatientRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +176,12 @@
     </Compile>
     <Compile Include="VIEW\ScheduleDoctor.Designer.cs">
       <DependentUpon>ScheduleDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\ViewConsultation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\ViewConsultation.Designer.cs">
+      <DependentUpon>ViewConsultation.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="OTHERS\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
@@ -205,6 +229,9 @@
     <EmbeddedResource Include="VIEW\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\MedicalHistory.resx">
+      <DependentUpon>MedicalHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PatientRecord.resx">
       <DependentUpon>PatientRecord.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\ScheduleDoctor.resx">
       <DependentUpon>ScheduleDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\ViewConsultation.resx">
+      <DependentUpon>ViewConsultation.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
