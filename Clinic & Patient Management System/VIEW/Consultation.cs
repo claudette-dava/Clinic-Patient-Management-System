@@ -40,6 +40,8 @@ namespace Clinic___Patient_Management_System.VIEW
                 dgv_consultation.Rows.Add(
                     row["ConsultationID"],
                     row["AppointmentID"],
+                     row["PatientID"],
+                    row["DoctorID"],
                     row["PatientName"],
                     row["DoctorName"],
                     Convert.ToDateTime(row["ConsultationDate"]).ToShortDateString(),
@@ -48,16 +50,42 @@ namespace Clinic___Patient_Management_System.VIEW
                     row["Treatment"].ToString(),
                     followUpText,
                     followUpDate,
-                    "View"
+                    "View Consultation Details",
+                    "Schedule Now"
                 );
             }
+            string role = CurrentUser.Role?.Trim();
 
-            // Hide ID columns if present
+            DataGridViewRow r = dgv_consultation.Rows[dgv_consultation.Rows.Count - 1];
+
+            // 🚫 Role-based button restrictions
+            if (role == "Doctor")
+            {
+                // Disable Schedule Now
+                if (r.Cells["FollowUpAppointment"] != null)
+                {
+                    r.Cells["FollowUpAppointment"].Style.ForeColor = Color.DarkGray;
+                    r.Cells["FollowUpAppointment"].ReadOnly = true;
+                }
+            }
+            else if (role == "Staff")
+            {
+                // Disable View Consultation Details
+                if (r.Cells["ViewDetails"] != null)
+                {
+                    r.Cells["ViewDetails"].Style.ForeColor = Color.DarkGray;
+                    r.Cells["ViewDetails"].ReadOnly = true;
+                }
+            }
+
+            if (dgv_consultation.Columns.Contains("DoctorID"))
+                dgv_consultation.Columns["DoctorID"].Visible = false;
+            if (dgv_consultation.Columns.Contains("PatientID"))
+                dgv_consultation.Columns["PatientID"].Visible = false; 
             if (dgv_consultation.Columns.Contains("ConsultationID"))
-                dgv_consultation.Columns["ConsultationID"].Visible = false;
-
+                dgv_consultation.Columns["ConsultationID"].Visible = false;  
             if (dgv_consultation.Columns.Contains("AppointmentID"))
-                dgv_consultation.Columns["AppointmentID"].Visible = false;
+                dgv_consultation.Columns["AppointmentID"].Visible = false; 
         }
         public void ShowMessage(string message)
         {
@@ -83,17 +111,58 @@ namespace Clinic___Patient_Management_System.VIEW
         }
 
         private void dgv_consultation_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
         {
+            string role = CurrentUser.Role?.Trim();
             if (e.RowIndex < 0) return;
 
             string columnName = dgv_consultation.Columns[e.ColumnIndex].Name;
 
+            if (role == "Doctor" && columnName == "FollowUpAppointment")
+            {
+                MessageBox.Show("Doctors cannot schedule follow-up appointments.",
+                    "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (role == "Staff" && columnName == "ViewDetails")
+            {
+                MessageBox.Show("Staff cannot view consultation details.",
+                    "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (columnName == "ViewDetails")
             {
                 int consultationID = Convert.ToInt32(dgv_consultation.Rows[e.RowIndex].Cells["ConsultationID"].Value);
-
                 ViewConsultation frm = new ViewConsultation(consultationID);
                 frm.ShowDialog();
+            }
+            else if (columnName == "FollowUpAppointment")
+            {
+                bool followUpRequired = dgv_consultation.Rows[e.RowIndex].Cells["FollowUpRequired"].Value?.ToString() == "Yes";
+                string followUpDateText = dgv_consultation.Rows[e.RowIndex].Cells["FollowUpDate"].Value?.ToString();
+
+                if (!followUpRequired)
+                {
+                    MessageBox.Show("Follow-up is not required for this consultation.",
+                        "No Follow-Up", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(followUpDateText))
+                {
+                    MessageBox.Show("Follow-up date not set. Please check consultation details.",
+                        "Missing Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DateTime followUpDate = Convert.ToDateTime(followUpDateText);
+                int doctorID = Convert.ToInt32(dgv_consultation.Rows[e.RowIndex].Cells["DoctorID"].Value);
+                int patientID = Convert.ToInt32(dgv_consultation.Rows[e.RowIndex].Cells["PatientID"].Value);
+
+                // ✅ Open filtered ScheduleDoctor
+                ScheduleDoctor scheduleForm = new ScheduleDoctor(doctorID, patientID, followUpDate);
+                scheduleForm.ShowDialog();
             }
         }
     }

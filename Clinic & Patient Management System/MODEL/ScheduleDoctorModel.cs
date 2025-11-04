@@ -95,5 +95,27 @@ namespace Clinic___Patient_Management_System.MODEL
                 return dt;
             }
         }
+        public DataTable GetSchedulesForDoctorAndDate(int doctorID, DateTime followUpDate)
+        {
+            using (SqlConnection con = new SqlConnection(_connection))
+            {
+                con.Open();
+                string query = @"
+            SELECT s.ScheduleID, s.DoctorID, d.Name, 
+                   s.ScheduleDate, s.StartTime, s.EndTime, s.Status
+            FROM tbl_schedule s
+            INNER JOIN tbl_doctor d ON s.DoctorID = d.DoctorID
+            WHERE s.DoctorID = @DoctorID 
+              AND CAST(s.ScheduleDate AS DATE) = @FollowUpDate";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                da.SelectCommand.Parameters.AddWithValue("@DoctorID", doctorID);
+                da.SelectCommand.Parameters.AddWithValue("@FollowUpDate", followUpDate.Date);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

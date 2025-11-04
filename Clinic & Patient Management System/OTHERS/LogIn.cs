@@ -1,4 +1,6 @@
-﻿using Clinic___Patient_Management_System.VIEW;
+﻿using Clinic___Patient_Management_System.PRESENTER;
+using Clinic___Patient_Management_System.VIEW;
+using Clinic___Patient_Management_System.VIEW.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,58 +14,34 @@ using System.Windows.Forms;
 
 namespace Clinic___Patient_Management_System
 {
-    public partial class LogIn : Form
+    public partial class LogIn : Form, ILoginView
     {
-        string connection = @"Data Source=CJ-PC;Initial Catalog=Clinic_and_Patient_db;Integrated Security=True;";
+        private readonly LoginPresenter _presenter;
+
         public LogIn()
         {
             InitializeComponent();
+            _presenter = new LoginPresenter(this);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            _presenter.Login();
+        }
+        public string Username => txt_username.Text.Trim();
+        public string Password => txt_password.Text.Trim();
 
-            string username = txt_username.Text.Trim();
-            string password = txt_password.Text.Trim();
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                MessageBox.Show("Enter username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            using (SqlConnection con = new SqlConnection(connection))
-            {
-                con.Open();
-                string query = "SELECT Role FROM tbl_users WHERE Username=@Username AND Password=@Password";
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", password);
-
-                    object result = cmd.ExecuteScalar();
-
-                    if (result != null)
-                    {
-                        string role = result.ToString();
-
-                  
-                        HomeForm home = new HomeForm(); 
-                        home.Show();
-
-                        this.Hide();
-                        txt_username.Clear();
-                        txt_password.Clear();
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message, "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        public void OpenHomeForm()
+        {
+            HomeForm home = new HomeForm();
+            home.Show();
+            this.Hide();
+        }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)

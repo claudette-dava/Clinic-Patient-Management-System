@@ -17,7 +17,7 @@ namespace Clinic___Patient_Management_System.VIEW.Interfaces
         string Temperature { get; }
         string BloodPressure { get; }
         string Weight { get; }
-        string Height { get; }
+        string PatientHeight { get; }
         string HeartRate { get; }
 
         // Consultation Details

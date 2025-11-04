@@ -16,15 +16,30 @@ namespace Clinic___Patient_Management_System.VIEW
     public partial class ScheduleDoctor : Form, IScheduleDoctorView
     {
         private readonly ScheduleDoctorPresenter _presenter;
+        private int? _doctorID;
+        private int? _patientID;
+        private DateTime? _followUpDate;
 
         public ScheduleDoctor()
         {
-            _presenter = new ScheduleDoctorPresenter(this);
             InitializeComponent();
+            _presenter = new ScheduleDoctorPresenter(this);
+            txt_searchPayment.Text = "   Search";   
+            txt_searchPayment.ForeColor = Color.Gray;
+            _presenter.LoadSchedules(); // load all schedules normally
+        }
+
+        // 2️⃣ Overloaded (used by Consultation “Schedule Now”)
+        public ScheduleDoctor(int doctorID, int patientID, DateTime followUpDate)
+        {
+            InitializeComponent();
+            _presenter = new ScheduleDoctorPresenter(this);
+            _doctorID = doctorID;
+            _patientID = patientID;
+            _followUpDate = followUpDate;
             txt_searchPayment.Text = "   Search";
             txt_searchPayment.ForeColor = Color.Gray;
-            _presenter.LoadSchedules();
-
+            _presenter.LoadSchedulesForDoctor(doctorID, followUpDate); // filtered load
         }
         public void DisplaySchedules(DataTable schedules)
         {
@@ -143,6 +158,10 @@ namespace Clinic___Patient_Management_System.VIEW
             frm.ShowDialog();
 
             _presenter.LoadTimeslots(scheduleID);
+        }
+        public void RefreshSchedules()
+        {
+            _presenter.LoadSchedules();  
         }
     }
 }

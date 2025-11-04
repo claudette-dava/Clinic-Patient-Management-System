@@ -62,8 +62,7 @@ namespace Clinic___Patient_Management_System.VIEW
             MessageBox.Show("Schedule added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             
-         //   _parentform.LoadSchedule();
-
+           _parentform.RefreshSchedules();
             this.Close();
         }
 

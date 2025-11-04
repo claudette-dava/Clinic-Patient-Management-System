@@ -35,7 +35,7 @@ namespace Clinic___Patient_Management_System.PRESENTER
                     _view.Temperature,
                     _view.BloodPressure,
                     _view.Weight,
-                    _view.Height,
+                    _view.PatientHeight,
                     _view.HeartRate,
                     _view.ChiefComplaint,
                     _view.Diagnosis,
