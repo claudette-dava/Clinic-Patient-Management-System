@@ -57,5 +57,10 @@ namespace Clinic___Patient_Management_System.PRESENTER
                 _model.InsertTimeslot(scheduleID, time.TimeOfDay, time.Add(interval).TimeOfDay);
             }
         }
+        public void LoadSchedulesForDoctor(int doctorID, DateTime followUpDate)
+        {
+            DataTable dt = _model.GetSchedulesForDoctorAndDate(doctorID, followUpDate);
+            _view.DisplaySchedules(dt);
+        }
     }
 }

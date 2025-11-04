@@ -47,6 +47,8 @@ namespace Clinic___Patient_Management_System.VIEW
         {
             dgv_appointmentRecord.Rows.Clear();
 
+            string role = CurrentUser.Role?.Trim();
+
             foreach (DataRow row in appointments.Rows)
             {
                 int appointmentID = Convert.ToInt32(row["AppointmentID"]);
@@ -64,31 +66,66 @@ namespace Clinic___Patient_Management_System.VIEW
 
                 string status = row["Status"].ToString();
 
-                // ✅ Match the actual column order of your DataGridView
-                dgv_appointmentRecord.Rows.Add(
-                    appointmentID,    // Appointment ID
-                    patientName,      // Patient Name
-                    doctorName,       // Doctor Name
-                    scheduleID,       // Schedule ID (hidden)
-                    timeslotID,       // TimeSlot ID (hidden)
-                    scheduleDate,     // Appointment Date
-                    startTime,        // Start Time
-                    endTime,          // End Time
-                    status,           // Status
-                    "Edit",           // Edit column
-                    "Delete" ,         // Delete column
-                    "View", 
-                    "Pay"
+                int index = dgv_appointmentRecord.Rows.Add(
+                    appointmentID,
+                    patientName,
+                    doctorName,
+                    scheduleID,
+                    timeslotID,
+                    scheduleDate,
+                    startTime,
+                    endTime,
+                    status,
+                    "Add Consultation",
+                    "Pay",
+                    "Cancel",
+                    "Delete",
+                    "Add Consultation"
                 );
+
+                DataGridViewRow r = dgv_appointmentRecord.Rows[index];
+
+                // 🎨 Style cancelled rows
+                if (status == "Cancelled")
+                {
+                    r.DefaultCellStyle.ForeColor = Color.Gray;
+                    r.DefaultCellStyle.Font = new Font(dgv_appointmentRecord.Font, FontStyle.Italic);
+                }
+
+                if (role == "Doctor")
+                {
+                   
+                    string[] restrictedColumns = { "Pay", "Cancel", "Delete" };
+
+                    foreach (string colName in restrictedColumns)
+                    {
+                        if (dgv_appointmentRecord.Columns.Contains(colName))
+                        {
+                            var cell = r.Cells[colName];
+                            cell.Style.ForeColor = Color.DarkGray;
+                            cell.ReadOnly = true;
+                        }
+                    }
+                }
+                else if (role == "Staff")
+                {
+                  
+                    if (r.Cells["AddConsultation"] != null)
+                    {
+                        r.Cells["AddConsultation"].Style.ForeColor = Color.DarkGray;
+                        r.Cells["AddConsultation"].ReadOnly = true;
+                    }
+                }
+
             }
 
-            // Hide ID columns safely
             if (dgv_appointmentRecord.Columns.Contains("scheduleID"))
                 dgv_appointmentRecord.Columns["scheduleID"].Visible = false;
 
             if (dgv_appointmentRecord.Columns.Contains("timeSlotID"))
                 dgv_appointmentRecord.Columns["timeSlotID"].Visible = false;
         }
+
 
 
         private void btn_addAppointment_Click(object sender, EventArgs e)
@@ -98,16 +135,38 @@ namespace Clinic___Patient_Management_System.VIEW
 
         private void dgv_appointmentRecord_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex < 0) return;
 
             string columnName = dgv_appointmentRecord.Columns[e.ColumnIndex].Name;
+            string status = dgv_appointmentRecord.Rows[e.RowIndex].Cells["Status"].Value.ToString();
+            string role = CurrentUser.Role?.Trim();
+
+
+            if (role == "Doctor" && columnName != "AddConsultation")
+            {
+                MessageBox.Show("Doctors can only add consultations.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (role == "Staff" && columnName == "AddConsultation")
+            {
+                MessageBox.Show("Staff cannot add consultations.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
             
+            if (status == "Cancelled" && columnName != "Delete")
+            {
+                MessageBox.Show("This appointment has been cancelled and cannot be modified.",
+                    "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // ✅ ADD CONSULTATION
             if (columnName == "AddConsultation")
             {
-                string status = dgv_appointmentRecord.Rows[e.RowIndex].Cells["status"].Value.ToString();
-
-              
                 if (status != "Scheduled")
                 {
                     MessageBox.Show("Consultation can only be added for scheduled appointments.",
@@ -115,7 +174,6 @@ namespace Clinic___Patient_Management_System.VIEW
                     return;
                 }
 
-                
                 int appointmentID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["AppointmentID"].Value);
                 int scheduleID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["ScheduleID"].Value);
                 int timeslotID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["TimeSlotID"].Value);
@@ -123,7 +181,6 @@ namespace Clinic___Patient_Management_System.VIEW
                 string patientName = dgv_appointmentRecord.Rows[e.RowIndex].Cells["patientID"].Value.ToString();
                 string scheduleDate = dgv_appointmentRecord.Rows[e.RowIndex].Cells["date"].Value.ToString();
 
-             
                 int doctorID = GetDoctorID(appointmentID);
                 int patientID = GetPatientID(appointmentID);
 
@@ -136,7 +193,6 @@ namespace Clinic___Patient_Management_System.VIEW
                     scheduleDate
                 );
 
-              
                 frm.ConsultationSaved += () =>
                 {
                     UpdateAppointmentStatus(appointmentID, "Completed");
@@ -146,12 +202,9 @@ namespace Clinic___Patient_Management_System.VIEW
                 frm.ShowDialog();
             }
 
-        
+            // 💳 PAYMENT
             else if (columnName == "Payment")
             {
-                string status = dgv_appointmentRecord.Rows[e.RowIndex].Cells["Status"].Value.ToString();
-
-              
                 if (status != "Completed")
                 {
                     MessageBox.Show("Only completed consultations can proceed to payment.",
@@ -171,6 +224,53 @@ namespace Clinic___Patient_Management_System.VIEW
                 frm.PaymentSaved += () => _presenter.LoadAppointments();
                 frm.ShowDialog();
             }
+
+            // ❌ CANCEL
+            else if (columnName == "Cancel")
+            {
+                if (status == "Completed")
+                {
+                    MessageBox.Show("Completed appointments cannot be cancelled.",
+                        "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to cancel this appointment?",
+                    "Confirm Cancellation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    int appointmentID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["AppointmentID"].Value);
+                    int timeslotID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["TimeSlotID"].Value);
+
+                    CancelAppointment(appointmentID, timeslotID);
+                    _presenter.LoadAppointments(); // Refresh grid
+                }
+            }
+
+            // 🗑️ DELETE (Allowed for Cancelled only)
+            else if (columnName == "Delete")
+            {
+                if (status != "Cancelled")
+                {
+                    MessageBox.Show("Only cancelled appointments can be deleted.",
+                        "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DialogResult confirm = MessageBox.Show(
+                    "Are you sure you want to permanently delete this cancelled appointment?",
+                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    int appointmentID = Convert.ToInt32(dgv_appointmentRecord.Rows[e.RowIndex].Cells["AppointmentID"].Value);
+                    DeleteAppointment(appointmentID);
+                    _presenter.LoadAppointments(); // refresh grid after delete
+                }
+            }
+
         }
         private int GetDoctorID(int appointmentID)
         {
@@ -204,6 +304,70 @@ namespace Clinic___Patient_Management_System.VIEW
                 cmd.ExecuteNonQuery();
             }
         }
+        private void CancelAppointment(int appointmentID, int timeslotID)
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=CJ-PC;Initial Catalog=Clinic_and_Patient_db;Integrated Security=True;"))
+            {
+                con.Open();
+                SqlTransaction transaction = con.BeginTransaction();
+
+                try
+                {
+                    // 1️⃣ Update appointment status
+                    string updateAppointment = "UPDATE tbl_appointment SET Status = 'Cancelled' WHERE AppointmentID = @id";
+                    using (SqlCommand cmd1 = new SqlCommand(updateAppointment, con, transaction))
+                    {
+                        cmd1.Parameters.AddWithValue("@id", appointmentID);
+                        cmd1.ExecuteNonQuery();
+                    }
+
+                    // 2️⃣ Free up the timeslot
+                    string updateTimeslot = "UPDATE tbl_timeslot SET Status = 'Available' WHERE TimeslotID = @tid";
+                    using (SqlCommand cmd2 = new SqlCommand(updateTimeslot, con, transaction))
+                    {
+                        cmd2.Parameters.AddWithValue("@tid", timeslotID);
+                        cmd2.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+
+                    MessageBox.Show("Appointment cancelled successfully.\nTimeslot is now available again.",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("Error cancelling appointment: " + ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void DeleteAppointment(int appointmentID)
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=CJ-PC;Initial Catalog=Clinic_and_Patient_db;Integrated Security=True;"))
+            {
+                con.Open();
+                try
+                {
+                    string query = "DELETE FROM tbl_appointment WHERE AppointmentID = @id";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", appointmentID);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Cancelled appointment deleted successfully.",
+                        "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting appointment: " + ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
 
     }
 }

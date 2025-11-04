@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="MODEL\AddAppointmentModel.cs" />
     <Compile Include="MODEL\AddConsultationModel.cs" />
     <Compile Include="MODEL\AddDoctorModel.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="MODEL\AppointmentModel.cs" />
     <Compile Include="MODEL\ConsultationModel.cs" />
     <Compile Include="MODEL\DoctorModel.cs" />
+    <Compile Include="MODEL\LoginModel.cs" />
     <Compile Include="MODEL\MedicalHistoryModel.cs" />
     <Compile Include="MODEL\PatientModel.cs" />
     <Compile Include="MODEL\PaymentModel.cs" />
@@ -77,8 +79,10 @@
     <Compile Include="PRESENTER\AppointmentPresenter.cs" />
     <Compile Include="PRESENTER\ConsultationPresenter.cs" />
     <Compile Include="PRESENTER\DoctorRecordPresenter.cs" />
+    <Compile Include="PRESENTER\LoginPresenter.cs" />
     <Compile Include="PRESENTER\MedicalHistoryPresenter.cs" />
     <Compile Include="PRESENTER\PatientRecordPresenter.cs" />
+    <Compile Include="PRESENTER\PaymentPresenter.cs" />
     <Compile Include="PRESENTER\ScheduleDoctorPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,9 +154,11 @@
     <Compile Include="VIEW\Interfaces\IAppointmentView.cs" />
     <Compile Include="VIEW\Interfaces\IConsultationView.cs" />
     <Compile Include="VIEW\Interfaces\IDoctorRecordView.cs" />
+    <Compile Include="VIEW\Interfaces\ILoginView.cs" />
     <Compile Include="VIEW\Interfaces\IMedicalHistoryView.cs" />
     <Compile Include="VIEW\Interfaces\IPatientRecordView.cs" />
     <Compile Include="VIEW\Interfaces\IScheduleDoctorView.cs" />
+    <Compile Include="VIEW\IPaymentView.cs" />
     <Compile Include="VIEW\MedicalHistory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +188,12 @@
     </Compile>
     <Compile Include="VIEW\ViewConsultation.Designer.cs">
       <DependentUpon>ViewConsultation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\ViewReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\ViewReceipt.Designer.cs">
+      <DependentUpon>ViewReceipt.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="OTHERS\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
@@ -243,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\ViewConsultation.resx">
       <DependentUpon>ViewConsultation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\ViewReceipt.resx">
+      <DependentUpon>ViewReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -26,7 +26,8 @@ namespace Clinic___Patient_Management_System.VIEW
         public string Temperature => txt_temperature.Text;
         public string BloodPressure => txt_bp.Text;
         public string Weight => txt_weight.Text;
-        public string Height => txt_height.Text;
+        public string PatientHeight => txt_height.Text;
+
         public string HeartRate => txt_hr.Text;
         public string ChiefComplaint => txt_complaint.Text;
         public string Diagnosis => txt_diagnosis.Text;

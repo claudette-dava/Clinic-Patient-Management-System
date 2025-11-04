@@ -20,20 +20,22 @@ namespace Clinic___Patient_Management_System.MODEL
                 con.Open();
                 string query = @"
                     SELECT 
-                        c.ConsultationID,
-                        c.AppointmentID,
-                        p.Name AS PatientName,
-                        d.Name AS DoctorName,
-                        c.ConsultationDate,
-                        c.ChiefComplaint,
-                        c.Diagnosis,
-                        c.Treatment,
-                        c.FollowUpRequired,
-                        c.FollowUpDate
-                    FROM tbl_consultation c
-                    INNER JOIN tbl_patientRecord p ON c.PatientID = p.PatientID
-                    INNER JOIN tbl_doctor d ON c.DoctorID = d.DoctorID
-                    ORDER BY c.ConsultationDate DESC";
+                    c.ConsultationID,
+                    c.AppointmentID,
+                    c.PatientID,
+                    c.DoctorID,
+                    p.Name AS PatientName,
+                    d.Name AS DoctorName,
+                    c.ConsultationDate,
+                    c.ChiefComplaint,
+                    c.Diagnosis,
+                    c.Treatment,
+                    c.FollowUpRequired,
+                    c.FollowUpDate
+                FROM tbl_consultation c
+                INNER JOIN tbl_patientRecord p ON c.PatientID = p.PatientID
+                INNER JOIN tbl_doctor d ON c.DoctorID = d.DoctorID
+                ORDER BY c.ConsultationDate DESC";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
