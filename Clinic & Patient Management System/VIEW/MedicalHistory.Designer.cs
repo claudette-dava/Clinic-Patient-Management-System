@@ -84,7 +84,7 @@
             this.txt_name.Location = new System.Drawing.Point(11, 129);
             this.txt_name.Multiline = true;
             this.txt_name.Name = "txt_name";
-            this.txt_name.Size = new System.Drawing.Size(384, 33);
+            this.txt_name.Size = new System.Drawing.Size(371, 33);
             this.txt_name.TabIndex = 37;
             this.txt_name.TabStop = false;
             // 

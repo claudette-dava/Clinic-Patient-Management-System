@@ -22,6 +22,8 @@ namespace Clinic___Patient_Management_System
         {
             InitializeComponent();
             _presenter = new LoginPresenter(this);
+            panel1.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
+            button1.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,6 +54,12 @@ namespace Clinic___Patient_Management_System
             {
                 txt_password.PasswordChar = '*'; 
             }
+        }
+
+      
+        private void label3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

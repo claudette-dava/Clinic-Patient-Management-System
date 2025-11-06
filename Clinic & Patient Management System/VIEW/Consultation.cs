@@ -24,6 +24,7 @@ namespace Clinic___Patient_Management_System.VIEW
             txt_searchConsultation.ForeColor = Color.Gray;
             _presenter = new ConsultationPresenter(this);
             _presenter.LoadConsultations();
+            panel1.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
         }
 
         public void DisplayConsultations(DataTable consultations)
@@ -164,6 +165,16 @@ namespace Clinic___Patient_Management_System.VIEW
                 ScheduleDoctor scheduleForm = new ScheduleDoctor(doctorID, patientID, followUpDate);
                 scheduleForm.ShowDialog();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

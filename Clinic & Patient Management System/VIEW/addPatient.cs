@@ -34,16 +34,18 @@ namespace Clinic___Patient_Management_System.VIEW
             txt_age.ReadOnly = true;
             dtp_birthdate.Font = new Font("Microsoft Sans Serif", 15);
             dtp_birthdate.Width = 330;
-            panel2.BackColor = (Color)new ColorConverter().ConvertFromString("#2596be");
-            btn_addPatient.BackColor = (Color)new ColorConverter().ConvertFromString("#2596be");
+            panel2.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
+            btn_addPatient.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
+            this.DoubleBuffered = true;
+            InitializeProvinceAndCities();  
         }
         public string NameInput => txt_name.Text;
         public string AgeInput => txt_age.Text;
         public string SexInput => rb_male.Checked ? "M" : rb_female.Checked ? "F" : "";
         public string ContactInput => txt_contactNo.Text;
         public string EmailInput => txt_email.Text;
-        public string ProvinceInput => txt_province.Text;
-        public string CityInput => txt_city.Text;
+        public string ProvinceInput => cb_province.Text;
+        public string CityInput => cb_city.Text;
         public string BrgyInput => txt_brgy.Text;
         public string StreetInput => txt_streetNo.Text;
         public void ShowMessage(string message)
@@ -61,8 +63,8 @@ namespace Clinic___Patient_Management_System.VIEW
             rb_female.Checked = false;
             txt_contactNo.Clear();
             txt_email.Clear();
-            txt_province.Clear();
-            txt_city.Clear();
+            cb_province.SelectedIndex = -1;
+            cb_city.SelectedIndex = -1;
             txt_brgy.Clear();
             txt_streetNo.Clear();
         }
@@ -86,8 +88,8 @@ namespace Clinic___Patient_Management_System.VIEW
         {
             txt_name.Text = name;
             txt_age.Text = age;
-            txt_province.Text = province;
-            txt_city.Text = city;
+            cb_province.Text = province;
+            cb_city.Text = city;
             txt_brgy.Text = brgy;
             txt_streetNo.Text = streetNo;
             rb_male.Checked = (sex == "M");
@@ -98,6 +100,44 @@ namespace Clinic___Patient_Management_System.VIEW
         public void TriggerPatientSaved()
         {
             PatientSaved?.Invoke();
+        }
+        private void InitializeProvinceAndCities()
+        {
+            
+            cb_province.Items.Clear();
+            cb_province.Items.Add("Bulacan");      
+            var bulacanCities = new List<string>
+            {
+                "Angat",
+                "Balagtas",
+                "Baliuag",
+                "Bocaue",
+                "Bulakan",
+                "Bustos",
+                "Calumpit",
+                "Doña Remedios Trinidad",
+                "Guiguinto",
+                "Hagonoy",
+                "Malolos City",
+                "Marilao",
+                "Meycauayan City",
+                "Norzagaray",
+                "Obando",
+                "Pandi",
+                "Paombong",
+                "Plaridel",
+                "Pulilan",
+                "San Ildefonso",
+                "San Jose del Monte City",
+                "San Miguel",
+                "San Rafael",
+                "Santa Maria"
+            };
+            cb_city.Items.Clear();
+            cb_city.Items.AddRange(bulacanCities.ToArray());
+            cb_city.DropDownStyle = ComboBoxStyle.DropDown;
+            cb_city.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cb_city.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
     }
 }

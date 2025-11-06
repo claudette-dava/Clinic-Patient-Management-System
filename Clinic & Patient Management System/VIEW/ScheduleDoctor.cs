@@ -27,9 +27,11 @@ namespace Clinic___Patient_Management_System.VIEW
             txt_searchPayment.Text = "   Search";   
             txt_searchPayment.ForeColor = Color.Gray;
             _presenter.LoadSchedules(); // load all schedules normally
+            panel1.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
+            StyleDataGridView();
+            this.Shown += ScheduleDoctor_Shown;
         }
 
-        // 2️⃣ Overloaded (used by Consultation “Schedule Now”)
         public ScheduleDoctor(int doctorID, int patientID, DateTime followUpDate)
         {
             InitializeComponent();
@@ -39,8 +41,97 @@ namespace Clinic___Patient_Management_System.VIEW
             _followUpDate = followUpDate;
             txt_searchPayment.Text = "   Search";
             txt_searchPayment.ForeColor = Color.Gray;
-            _presenter.LoadSchedulesForDoctor(doctorID, followUpDate); // filtered load
+            // 🟢 Handle Shown event for this mode too
+            this.Shown += (s, e) =>
+            {
+                _presenter.LoadSchedulesForDoctor(doctorID, followUpDate);
+                SmoothRefreshGrid();
+            };
+            StyleDataGridView();
         }
+        private void ScheduleDoctor_Shown(object sender, EventArgs e)
+        {
+            _presenter.LoadSchedules();
+
+            this.BeginInvoke(new Action(() =>
+            {
+                try
+                {
+                    SmoothRefreshGrid();
+                }
+                catch
+                {
+                    // ignore minor rendering exceptions
+                }
+            }));
+        }
+
+        private void SmoothRefreshGrid()
+        {
+            dgv_schedule.AutoResizeColumns();
+            dgv_schedule.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+            dgv_schedule.ClearSelection();
+            dgv_schedule.Refresh();
+        }
+
+        private void StyleDataGridView()
+        {
+            var dgv = dgv_schedule;
+
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+
+
+            dgv.BackgroundColor = Color.White;
+            dgv.BorderStyle = BorderStyle.None;
+            dgv.GridColor = Color.LightGray;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+
+
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#6495ed");
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 10, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.ColumnHeadersHeight = 40;
+
+            dgv.DefaultCellStyle.BackColor = Color.White;
+            dgv.DefaultCellStyle.ForeColor = Color.Black;
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(224, 240, 255);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.RowTemplate.Height = 40;
+            dgv.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+
+            dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 248, 255);
+
+
+
+
+            dgv.CellMouseEnter += (s, e) =>
+            {
+                if (e.RowIndex >= 0)
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(235, 243, 255);
+            };
+            dgv.CellMouseLeave += (s, e) =>
+            {
+                if (e.RowIndex >= 0)
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor =
+                        e.RowIndex % 2 == 0 ? Color.White : Color.FromArgb(245, 248, 255);
+                }
+            };
+        }
+
         public void DisplaySchedules(DataTable schedules)
         {
             dgv_schedule.Rows.Clear();
@@ -58,6 +149,10 @@ namespace Clinic___Patient_Management_System.VIEW
             }
 
             dgv_schedule.Columns["Column5"].Visible = false;
+            dgv_schedule.AutoResizeColumns();
+            dgv_schedule.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+            dgv_schedule.ClearSelection();
+            dgv_schedule.Refresh();
         }
 
         public void DisplayTimeslots(DataTable timeslots)
@@ -108,11 +203,7 @@ namespace Clinic___Patient_Management_System.VIEW
             addSchedule form = new addSchedule(this);
             form.ShowDialog();
         }
-
-       
-
-
-       
+    
             private void dgv_schedule_CellClick(object sender, DataGridViewCellEventArgs e)
             {
             if (e.RowIndex < 0) return;
@@ -162,6 +253,11 @@ namespace Clinic___Patient_Management_System.VIEW
         public void RefreshSchedules()
         {
             _presenter.LoadSchedules();  
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

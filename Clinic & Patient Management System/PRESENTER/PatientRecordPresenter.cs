@@ -19,14 +19,30 @@ namespace Clinic___Patient_Management_System.PRESENTER
             _view = view;
             _model = new PatientModel();
         }
-        public void LoadPatients()
+       public void LoadPatients()
         {
-            var patients = _model.GetAllPatients();
-            _view.DisplayPatients(patients);
+   
+        string role = CurrentUser.Role?.Trim();
+  
+        int doctorId = CurrentUser.DoctorID ?? 0;
+
+        List<PatientModel.Patient> patients;
+
+            if (role == "Doctor" && doctorId > 0)
+        {
+         patients = _model.GetPatientsForDoctor(doctorId);
         }
+          else
+        {
+        patients = _model.GetAllPatients();
+        }
+
+    _view.DisplayPatients(patients);
+        }
+
         public void DeletePatient(int id)
         {
-            // 🟢 Ask for confirmation before deleting
+
             DialogResult confirmResult = MessageBox.Show(
                 "Are you sure you want to delete this patient record?",
                 "Confirm Deletion",
@@ -35,9 +51,9 @@ namespace Clinic___Patient_Management_System.PRESENTER
             );
 
             if (confirmResult == DialogResult.No)
-                return; // cancel deletion if user says No
+                return;
 
-            // 🟡 Continue deletion if user confirms
+
             if (!_model.CanDeletePatient(id))
             {
                 _view.ShowMessage("Cannot delete patient because they have appointments.");
@@ -46,7 +62,15 @@ namespace Clinic___Patient_Management_System.PRESENTER
 
             _model.DeletePatient(id);
             _view.ShowMessage("Patient record deleted successfully!");
-            LoadPatients(); // refresh after delete
+            LoadPatients();
+        }
+        public void SearchPatients(string keyword)
+        {
+            string role = CurrentUser.Role?.Trim();
+            int doctorId = CurrentUser.DoctorID ?? 0;
+
+            var results = _model.SearchPatients(keyword, role, doctorId);
+            _view.DisplayPatients(results);
         }
 
 

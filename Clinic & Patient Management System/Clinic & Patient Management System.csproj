@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrentUser.cs" />
+    <Compile Include="FormNavigator.cs" />
     <Compile Include="MODEL\AddAppointmentModel.cs" />
     <Compile Include="MODEL\AddConsultationModel.cs" />
     <Compile Include="MODEL\AddDoctorModel.cs" />

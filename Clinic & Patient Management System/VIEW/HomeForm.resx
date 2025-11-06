@@ -138,7 +138,7 @@
   <data name="pic_addUser.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAA/5JREFUeF7tm0+IVVUcx03HIahoIU6DC1cOLqRAM9zU0nEM2rgIU8GhReBKNLMW
+        DAAACwwBP0AiyAAAA/5JREFUeF7tm0+IVVUcx03HIahoIU6DC1cOLqRAM9zU0nEM2rgIU8GhReBKNLMW
         bQUhZ5xok4IL/6RFuGvbrgjS0piIIF2IpUnQomzR309843fh8J373n3Xue+9e1/3A5d5753v+b177jnn
         d37nd96sWNHS0tLS0tLS0tIyEICHgKeBvcChuPR6i8pcPzIAk8AC8AOdUdlJ4Amv31iix48C9721XfgV
         ONL4EQE8DFzy1gF34/M5YD5e6zPnomy43UYQPe+NvwpMAytz9CuBHcCXVkcPoXkjIYZ9inp6lescYCx8
@@ -433,6 +433,21 @@
         oH3XPvnBwIHaf0X7gz5w3+l0gD8dFyE1qwROdgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="DoctorName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="PatientName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="StartTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="EndTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Status.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="DoctorName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

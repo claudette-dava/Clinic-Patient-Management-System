@@ -26,7 +26,7 @@ namespace Clinic___Patient_Management_System.VIEW
         {
             InitializeComponent();
             _presenter = new MedicalHistoryPresenter(this);
-            panel2.BackColor = (Color)new ColorConverter().ConvertFromString("#2596be");
+            panel2.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
             btn_save.BackColor = (Color)new ColorConverter().ConvertFromString("#2596be");
             PatientID = patientId;
             PatientName = patientName;

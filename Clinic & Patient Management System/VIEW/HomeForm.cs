@@ -15,9 +15,13 @@ namespace Clinic___Patient_Management_System.VIEW
     public partial class HomeForm : Form
     {
         public static Appointment appointmentForm;
+     
         public HomeForm()
         {
             InitializeComponent();
+
+            pic_island.Width = 1650;
+
             panel1.BackColor = (Color)new ColorConverter().ConvertFromString("#2e373a");
             panel2.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
 
@@ -342,11 +346,7 @@ namespace Clinic___Patient_Management_System.VIEW
             panel2.Height = 70;
         }
 
-        private void addPatient_Click(object sender, EventArgs e)
-        {
-            PatientRecord patientRecord = new PatientRecord();
-            patientRecord.ShowDialog();
-        }
+     
 
         private void HomeForm_Load(object sender, EventArgs e)
         {
@@ -363,7 +363,7 @@ namespace Clinic___Patient_Management_System.VIEW
 
         private void lbl_patient_Click(object sender, EventArgs e)
         {
-            PatientRecord pr = new PatientRecord();
+            PatientRecord pr = new PatientRecord(this);
             pr.ShowDialog();
         }
 

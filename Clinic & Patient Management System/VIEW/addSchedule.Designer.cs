@@ -51,17 +51,17 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Location = new System.Drawing.Point(-6, -4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(472, 77);
+            this.panel1.Size = new System.Drawing.Size(472, 66);
             this.panel1.TabIndex = 39;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(92, 29);
+            this.label11.Location = new System.Drawing.Point(80, 27);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(212, 24);
+            this.label11.Size = new System.Drawing.Size(237, 25);
             this.label11.TabIndex = 37;
             this.label11.Text = "DOCTOR SCHEDULE";
             // 
@@ -69,13 +69,13 @@
             // 
             this.btn_cancel.BackColor = System.Drawing.Color.Red;
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.Color.White;
-            this.btn_cancel.Location = new System.Drawing.Point(296, 480);
+            this.btn_cancel.Location = new System.Drawing.Point(153, 493);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(68, 22);
+            this.btn_cancel.Size = new System.Drawing.Size(96, 38);
             this.btn_cancel.TabIndex = 58;
             this.btn_cancel.Text = "Cancel";
-            this.btn_cancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn_cancel.UseVisualStyleBackColor = false;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
@@ -85,11 +85,11 @@
             this.btn_addPatient.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_addPatient.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_addPatient.ForeColor = System.Drawing.Color.White;
-            this.btn_addPatient.Location = new System.Drawing.Point(69, 464);
+            this.btn_addPatient.Location = new System.Drawing.Point(265, 493);
             this.btn_addPatient.Name = "btn_addPatient";
-            this.btn_addPatient.Size = new System.Drawing.Size(199, 38);
+            this.btn_addPatient.Size = new System.Drawing.Size(100, 38);
             this.btn_addPatient.TabIndex = 57;
-            this.btn_addPatient.Text = "Add Schedule";
+            this.btn_addPatient.Text = "Save";
             this.btn_addPatient.UseVisualStyleBackColor = false;
             this.btn_addPatient.Click += new System.EventHandler(this.btn_addPatient_Click);
             // 
@@ -137,7 +137,7 @@
             // 
             this.cmb_doctor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_doctor.FormattingEnabled = true;
-            this.cmb_doctor.Location = new System.Drawing.Point(11, 95);
+            this.cmb_doctor.Location = new System.Drawing.Point(15, 95);
             this.cmb_doctor.Name = "cmb_doctor";
             this.cmb_doctor.Size = new System.Drawing.Size(353, 32);
             this.cmb_doctor.TabIndex = 45;
@@ -145,17 +145,17 @@
             // dtp_date
             // 
             this.dtp_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_date.Location = new System.Drawing.Point(11, 168);
+            this.dtp_date.Location = new System.Drawing.Point(18, 169);
             this.dtp_date.Name = "dtp_date";
-            this.dtp_date.Size = new System.Drawing.Size(267, 26);
+            this.dtp_date.Size = new System.Drawing.Size(350, 26);
             this.dtp_date.TabIndex = 59;
             // 
             // dtp_start
             // 
             this.dtp_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_start.Location = new System.Drawing.Point(15, 241);
+            this.dtp_start.Location = new System.Drawing.Point(18, 242);
             this.dtp_start.Name = "dtp_start";
-            this.dtp_start.Size = new System.Drawing.Size(267, 26);
+            this.dtp_start.Size = new System.Drawing.Size(350, 26);
             this.dtp_start.TabIndex = 60;
             // 
             // dtp_end
@@ -163,7 +163,7 @@
             this.dtp_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_end.Location = new System.Drawing.Point(18, 325);
             this.dtp_end.Name = "dtp_end";
-            this.dtp_end.Size = new System.Drawing.Size(267, 26);
+            this.dtp_end.Size = new System.Drawing.Size(350, 26);
             this.dtp_end.TabIndex = 61;
             // 
             // rb_active
@@ -207,7 +207,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 544);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(388, 544);
             this.Controls.Add(this.rb_active);
             this.Controls.Add(this.rb_inactive);
             this.Controls.Add(this.label8);
@@ -222,6 +223,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmb_doctor);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "addSchedule";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "addSchedule";

@@ -34,10 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_age = new System.Windows.Forms.TextBox();
-            this.txt_province = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txt_city = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_streetNo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,6 +51,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
+            this.cb_province = new System.Windows.Forms.ComboBox();
+            this.cb_city = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,15 +114,6 @@
             this.txt_age.Size = new System.Drawing.Size(36, 33);
             this.txt_age.TabIndex = 16;
             // 
-            // txt_province
-            // 
-            this.txt_province.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_province.Location = new System.Drawing.Point(12, 226);
-            this.txt_province.Multiline = true;
-            this.txt_province.Name = "txt_province";
-            this.txt_province.Size = new System.Drawing.Size(254, 33);
-            this.txt_province.TabIndex = 17;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -142,15 +133,6 @@
             this.label5.Size = new System.Drawing.Size(106, 16);
             this.label5.TabIndex = 20;
             this.label5.Text = "City/Municipality:";
-            // 
-            // txt_city
-            // 
-            this.txt_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_city.Location = new System.Drawing.Point(278, 226);
-            this.txt_city.Multiline = true;
-            this.txt_city.Name = "txt_city";
-            this.txt_city.Size = new System.Drawing.Size(254, 33);
-            this.txt_city.TabIndex = 19;
             // 
             // label6
             // 
@@ -266,13 +248,13 @@
             // 
             this.btn_addPatient.BackColor = System.Drawing.Color.White;
             this.btn_addPatient.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_addPatient.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_addPatient.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_addPatient.ForeColor = System.Drawing.Color.White;
-            this.btn_addPatient.Location = new System.Drawing.Point(182, 418);
+            this.btn_addPatient.Location = new System.Drawing.Point(438, 418);
             this.btn_addPatient.Name = "btn_addPatient";
-            this.btn_addPatient.Size = new System.Drawing.Size(164, 33);
+            this.btn_addPatient.Size = new System.Drawing.Size(95, 33);
             this.btn_addPatient.TabIndex = 27;
-            this.btn_addPatient.Text = "Add Patient";
+            this.btn_addPatient.Text = "Save";
             this.btn_addPatient.UseVisualStyleBackColor = false;
             this.btn_addPatient.Click += new System.EventHandler(this.btn_addPatient_Click);
             // 
@@ -300,21 +282,42 @@
             // 
             this.btn_cancel.BackColor = System.Drawing.Color.Red;
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.Color.White;
-            this.btn_cancel.Location = new System.Drawing.Point(462, 429);
+            this.btn_cancel.Location = new System.Drawing.Point(342, 418);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(68, 22);
+            this.btn_cancel.Size = new System.Drawing.Size(90, 33);
             this.btn_cancel.TabIndex = 36;
             this.btn_cancel.Text = "Cancel";
             this.btn_cancel.UseVisualStyleBackColor = false;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
+            // cb_province
+            // 
+            this.cb_province.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_province.FormattingEnabled = true;
+            this.cb_province.Location = new System.Drawing.Point(15, 235);
+            this.cb_province.Name = "cb_province";
+            this.cb_province.Size = new System.Drawing.Size(250, 32);
+            this.cb_province.TabIndex = 37;
+            // 
+            // cb_city
+            // 
+            this.cb_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_city.FormattingEnabled = true;
+            this.cb_city.Location = new System.Drawing.Point(282, 235);
+            this.cb_city.Name = "cb_city";
+            this.cb_city.Size = new System.Drawing.Size(250, 32);
+            this.cb_city.TabIndex = 38;
+            // 
             // addPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(544, 477);
+            this.Controls.Add(this.cb_city);
+            this.Controls.Add(this.cb_province);
             this.Controls.Add(this.rb_male);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.rb_female);
@@ -330,9 +333,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txt_brgy);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txt_city);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txt_province);
             this.Controls.Add(this.txt_age);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -358,10 +359,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_age;
-        private System.Windows.Forms.TextBox txt_province;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txt_city;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txt_streetNo;
         private System.Windows.Forms.Label label7;
@@ -377,5 +376,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btn_cancel;
+        private System.Windows.Forms.ComboBox cb_province;
+        private System.Windows.Forms.ComboBox cb_city;
     }
 }
