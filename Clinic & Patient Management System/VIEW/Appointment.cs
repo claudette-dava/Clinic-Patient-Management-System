@@ -24,6 +24,7 @@ namespace Clinic___Patient_Management_System.VIEW
             txt_searchAppointment.Text = "   Search";
             txt_searchAppointment.ForeColor = Color.Gray;
             _presenter.LoadAppointments();
+            panel1.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
         }
 
         private void txt_searchAppointment_Enter(object sender, EventArgs e)
@@ -367,7 +368,9 @@ namespace Clinic___Patient_Management_System.VIEW
             }
         }
 
-
-
+        private void label2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

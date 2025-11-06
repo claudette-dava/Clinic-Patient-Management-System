@@ -113,14 +113,14 @@
             // btn_addDoctor
             // 
             this.btn_addDoctor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_addDoctor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_addDoctor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_addDoctor.ForeColor = System.Drawing.Color.White;
-            this.btn_addDoctor.Location = new System.Drawing.Point(144, 378);
+            this.btn_addDoctor.Location = new System.Drawing.Point(436, 381);
             this.btn_addDoctor.Margin = new System.Windows.Forms.Padding(4);
             this.btn_addDoctor.Name = "btn_addDoctor";
-            this.btn_addDoctor.Size = new System.Drawing.Size(219, 41);
+            this.btn_addDoctor.Size = new System.Drawing.Size(96, 41);
             this.btn_addDoctor.TabIndex = 28;
-            this.btn_addDoctor.Text = "Add Doctor";
+            this.btn_addDoctor.Text = "Save";
             this.btn_addDoctor.UseVisualStyleBackColor = true;
             this.btn_addDoctor.Click += new System.EventHandler(this.btn_addDoctor_Click);
             // 
@@ -128,11 +128,12 @@
             // 
             this.btn_cancel.BackColor = System.Drawing.Color.Red;
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.ForeColor = System.Drawing.Color.White;
-            this.btn_cancel.Location = new System.Drawing.Point(416, 392);
+            this.btn_cancel.Location = new System.Drawing.Point(328, 381);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(4);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(91, 27);
+            this.btn_cancel.Size = new System.Drawing.Size(95, 41);
             this.btn_cancel.TabIndex = 37;
             this.btn_cancel.Text = "Cancel";
             this.btn_cancel.UseVisualStyleBackColor = false;
@@ -156,7 +157,7 @@
             this.txt_phoneNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txt_phoneNumber.Multiline = true;
             this.txt_phoneNumber.Name = "txt_phoneNumber";
-            this.txt_phoneNumber.Size = new System.Drawing.Size(317, 40);
+            this.txt_phoneNumber.Size = new System.Drawing.Size(311, 40);
             this.txt_phoneNumber.TabIndex = 41;
             // 
             // label4
@@ -221,6 +222,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(549, 440);
             this.Controls.Add(this.rb_active);
             this.Controls.Add(this.rb_inactive);

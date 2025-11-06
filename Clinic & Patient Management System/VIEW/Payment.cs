@@ -22,6 +22,7 @@ namespace Clinic___Patient_Management_System.VIEW
             txt_searchPayment.Text = "   Search";
             txt_searchPayment.ForeColor = Color.Gray;
             _presenter.LoadPayments();
+            panel1.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
         }
         public void DisplayPayments(DataTable payments)
         {
@@ -117,6 +118,11 @@ namespace Clinic___Patient_Management_System.VIEW
                     _presenter.LoadPayments(); 
                 }
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
     }

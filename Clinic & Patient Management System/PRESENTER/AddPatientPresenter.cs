@@ -21,7 +21,23 @@ namespace Clinic___Patient_Management_System.PRESENTER
         }
         public void SavePatient()
         {
-            // --- VALIDATION ---
+            if (!int.TryParse(_view.AgeInput, out int age))
+            {
+                _view.ShowMessage("Invalid age format.");
+                return;
+            }
+
+            if (age < 0)
+            {
+                _view.ShowMessage("Age cannot be negative.");
+                return;
+            }
+
+            if (age > 120)
+            {
+                _view.ShowMessage("Age seems unrealistic. Please check the birthdate.");
+                return;
+            }
 
             if (!Regex.IsMatch(_view.NameInput.Trim(), @"^[A-Za-z\s]+$"))
             {

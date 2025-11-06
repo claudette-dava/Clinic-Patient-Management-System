@@ -19,9 +19,9 @@ namespace Clinic___Patient_Management_System.VIEW
         public addSchedule(ScheduleDoctor parentform)
         {
             InitializeComponent();
-            panel1.BackColor = (Color)new ColorConverter().ConvertFromString("#2596be");
-            btn_addPatient.BackColor = (Color)new ColorConverter().ConvertFromString("#2596be");
-            _parentform= parentform;    
+            panel1.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
+            btn_addPatient.BackColor = (Color)new ColorConverter().ConvertFromString("#013797");
+            _parentform = parentform;    
         }
 
         private void btn_addPatient_Click(object sender, EventArgs e)

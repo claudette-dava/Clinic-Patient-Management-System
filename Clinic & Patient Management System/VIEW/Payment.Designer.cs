@@ -41,16 +41,20 @@
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.View = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_paymentRecord)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_searchPayment
             // 
             this.txt_searchPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_searchPayment.Location = new System.Drawing.Point(12, 23);
+            this.txt_searchPayment.Location = new System.Drawing.Point(12, 70);
             this.txt_searchPayment.Multiline = true;
             this.txt_searchPayment.Name = "txt_searchPayment";
-            this.txt_searchPayment.Size = new System.Drawing.Size(486, 33);
+            this.txt_searchPayment.Size = new System.Drawing.Size(1141, 33);
             this.txt_searchPayment.TabIndex = 9;
             this.txt_searchPayment.Enter += new System.EventHandler(this.txt_searchPayment_Enter);
             this.txt_searchPayment.Leave += new System.EventHandler(this.txt_searchPayment_Leave);
@@ -59,6 +63,7 @@
             // 
             this.dgv_paymentRecord.AllowUserToAddRows = false;
             this.dgv_paymentRecord.AllowUserToDeleteRows = false;
+            this.dgv_paymentRecord.BackgroundColor = System.Drawing.Color.White;
             this.dgv_paymentRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_paymentRecord.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PaymentID,
@@ -72,7 +77,7 @@
             this.Notes,
             this.View,
             this.Delete});
-            this.dgv_paymentRecord.Location = new System.Drawing.Point(12, 78);
+            this.dgv_paymentRecord.Location = new System.Drawing.Point(12, 118);
             this.dgv_paymentRecord.Name = "dgv_paymentRecord";
             this.dgv_paymentRecord.ReadOnly = true;
             this.dgv_paymentRecord.Size = new System.Drawing.Size(1141, 448);
@@ -149,17 +154,54 @@
             this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(-2, -6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1181, 63);
+            this.panel1.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(14, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(155, 33);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "PAYMENT";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(1123, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 29);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "X";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Payment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1296, 556);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(1167, 576);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgv_paymentRecord);
             this.Controls.Add(this.txt_searchPayment);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Payment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Payment";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_paymentRecord)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +221,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
         private System.Windows.Forms.DataGridViewButtonColumn View;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

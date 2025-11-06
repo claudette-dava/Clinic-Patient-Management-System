@@ -43,13 +43,18 @@
             this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_timeslot)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgv_schedule
             // 
             this.dgv_schedule.AllowUserToAddRows = false;
+            this.dgv_schedule.BackgroundColor = System.Drawing.Color.White;
             this.dgv_schedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_schedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.schedID,
@@ -59,7 +64,7 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dgv_schedule.Location = new System.Drawing.Point(12, 51);
+            this.dgv_schedule.Location = new System.Drawing.Point(12, 129);
             this.dgv_schedule.Name = "dgv_schedule";
             this.dgv_schedule.Size = new System.Drawing.Size(643, 525);
             this.dgv_schedule.TabIndex = 0;
@@ -103,7 +108,7 @@
             // txt_searchPayment
             // 
             this.txt_searchPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_searchPayment.Location = new System.Drawing.Point(12, 12);
+            this.txt_searchPayment.Location = new System.Drawing.Point(12, 90);
             this.txt_searchPayment.Multiline = true;
             this.txt_searchPayment.Name = "txt_searchPayment";
             this.txt_searchPayment.Size = new System.Drawing.Size(421, 33);
@@ -115,7 +120,7 @@
             // btn_addSchedule
             // 
             this.btn_addSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_addSchedule.Location = new System.Drawing.Point(446, 12);
+            this.btn_addSchedule.Location = new System.Drawing.Point(446, 90);
             this.btn_addSchedule.Name = "btn_addSchedule";
             this.btn_addSchedule.Size = new System.Drawing.Size(210, 33);
             this.btn_addSchedule.TabIndex = 11;
@@ -126,13 +131,15 @@
             // dgv_timeslot
             // 
             this.dgv_timeslot.AllowUserToAddRows = false;
+            this.dgv_timeslot.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_timeslot.BackgroundColor = System.Drawing.Color.White;
             this.dgv_timeslot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_timeslot.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TimeSlotID,
             this.StartTime,
             this.EndTime,
             this.Status});
-            this.dgv_timeslot.Location = new System.Drawing.Point(662, 12);
+            this.dgv_timeslot.Location = new System.Drawing.Point(662, 90);
             this.dgv_timeslot.Name = "dgv_timeslot";
             this.dgv_timeslot.Size = new System.Drawing.Size(518, 564);
             this.dgv_timeslot.TabIndex = 12;
@@ -147,7 +154,6 @@
             // 
             this.StartTime.HeaderText = "StartTime";
             this.StartTime.Name = "StartTime";
-            this.StartTime.Width = 225;
             // 
             // EndTime
             // 
@@ -158,22 +164,58 @@
             // 
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
-            this.Status.Width = 150;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(-4, -5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1203, 78);
+            this.panel1.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(1153, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 29);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "X";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(16, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(365, 37);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "DOCTOR\'S SCHEDULE";
             // 
             // ScheduleDoctor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1193, 588);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(1193, 675);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgv_timeslot);
             this.Controls.Add(this.btn_addSchedule);
             this.Controls.Add(this.txt_searchPayment);
             this.Controls.Add(this.dgv_schedule);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ScheduleDoctor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ScheduleDoctor";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_schedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_timeslot)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +238,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

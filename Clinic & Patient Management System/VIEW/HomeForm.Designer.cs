@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pic_dashboard = new System.Windows.Forms.PictureBox();
             this.lbl_dashboard = new System.Windows.Forms.Label();
             this.lbl_logout = new System.Windows.Forms.Label();
+            this.pic_dashboard = new System.Windows.Forms.PictureBox();
             this.pic_addUser = new System.Windows.Forms.PictureBox();
             this.lbl_addUser = new System.Windows.Forms.Label();
             this.lbl_Consultation = new System.Windows.Forms.Label();
@@ -142,20 +142,10 @@
             this.panel1.Controls.Add(this.pic_appointment);
             this.panel1.Controls.Add(this.lbl_userName);
             this.panel1.Controls.Add(this.pic_UserProfile);
-            this.panel1.Location = new System.Drawing.Point(12, 71);
+            this.panel1.Location = new System.Drawing.Point(-1, 71);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(234, 797);
+            this.panel1.Size = new System.Drawing.Size(247, 797);
             this.panel1.TabIndex = 0;
-            // 
-            // pic_dashboard
-            // 
-            this.pic_dashboard.Image = ((System.Drawing.Image)(resources.GetObject("pic_dashboard.Image")));
-            this.pic_dashboard.Location = new System.Drawing.Point(19, 94);
-            this.pic_dashboard.Name = "pic_dashboard";
-            this.pic_dashboard.Size = new System.Drawing.Size(35, 35);
-            this.pic_dashboard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pic_dashboard.TabIndex = 9;
-            this.pic_dashboard.TabStop = false;
             // 
             // lbl_dashboard
             // 
@@ -179,6 +169,16 @@
             this.lbl_logout.TabIndex = 26;
             this.lbl_logout.Text = "Log Out";
             this.lbl_logout.Click += new System.EventHandler(this.lbl_logout_Click_1);
+            // 
+            // pic_dashboard
+            // 
+            this.pic_dashboard.Image = ((System.Drawing.Image)(resources.GetObject("pic_dashboard.Image")));
+            this.pic_dashboard.Location = new System.Drawing.Point(19, 94);
+            this.pic_dashboard.Name = "pic_dashboard";
+            this.pic_dashboard.Size = new System.Drawing.Size(35, 35);
+            this.pic_dashboard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_dashboard.TabIndex = 9;
+            this.pic_dashboard.TabStop = false;
             // 
             // pic_addUser
             // 
@@ -387,9 +387,9 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(12, -2);
+            this.panel2.Location = new System.Drawing.Point(-23, -2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1580, 67);
+            this.panel2.Size = new System.Drawing.Size(1704, 67);
             this.panel2.TabIndex = 1;
             // 
             // label1
@@ -439,7 +439,7 @@
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.lbl_doctorCount);
-            this.panel4.Location = new System.Drawing.Point(284, 390);
+            this.panel4.Location = new System.Drawing.Point(371, 401);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(254, 133);
             this.panel4.TabIndex = 8;
@@ -470,7 +470,7 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.SeaGreen;
             this.panel5.Controls.Add(this.pictureBox2);
-            this.panel5.Location = new System.Drawing.Point(284, 390);
+            this.panel5.Location = new System.Drawing.Point(371, 401);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(92, 133);
             this.panel5.TabIndex = 0;
@@ -490,7 +490,7 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.Coral;
             this.panel6.Controls.Add(this.pictureBox3);
-            this.panel6.Location = new System.Drawing.Point(619, 390);
+            this.panel6.Location = new System.Drawing.Point(675, 401);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(92, 133);
             this.panel6.TabIndex = 9;
@@ -510,7 +510,7 @@
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel7.Controls.Add(this.label7);
             this.panel7.Controls.Add(this.lbl_patientCount);
-            this.panel7.Location = new System.Drawing.Point(619, 390);
+            this.panel7.Location = new System.Drawing.Point(675, 401);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(254, 133);
             this.panel7.TabIndex = 10;
@@ -541,7 +541,7 @@
             // 
             this.panel8.BackColor = System.Drawing.Color.Salmon;
             this.panel8.Controls.Add(this.pictureBox4);
-            this.panel8.Location = new System.Drawing.Point(960, 390);
+            this.panel8.Location = new System.Drawing.Point(996, 401);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(92, 133);
             this.panel8.TabIndex = 11;
@@ -561,7 +561,7 @@
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel9.Controls.Add(this.label9);
             this.panel9.Controls.Add(this.lbl_appointmentCount);
-            this.panel9.Location = new System.Drawing.Point(960, 390);
+            this.panel9.Location = new System.Drawing.Point(996, 401);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(254, 133);
             this.panel9.TabIndex = 12;
@@ -592,7 +592,7 @@
             // 
             this.panel10.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.panel10.Controls.Add(this.pictureBox5);
-            this.panel10.Location = new System.Drawing.Point(1294, 390);
+            this.panel10.Location = new System.Drawing.Point(1279, 401);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(92, 133);
             this.panel10.TabIndex = 11;
@@ -613,7 +613,7 @@
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel11.Controls.Add(this.label11);
             this.panel11.Controls.Add(this.lbl_pendingCount);
-            this.panel11.Location = new System.Drawing.Point(1294, 390);
+            this.panel11.Location = new System.Drawing.Point(1279, 401);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(254, 133);
             this.panel11.TabIndex = 12;
@@ -733,13 +733,13 @@
             this.pic_island.BackColor = System.Drawing.Color.LightSteelBlue;
             this.pic_island.Location = new System.Drawing.Point(252, 108);
             this.pic_island.Name = "pic_island";
-            this.pic_island.Size = new System.Drawing.Size(1386, 250);
+            this.pic_island.Size = new System.Drawing.Size(1439, 250);
             this.pic_island.TabIndex = 2;
             this.pic_island.TabStop = false;
             // 
             // btn_refresh
             // 
-            this.btn_refresh.Location = new System.Drawing.Point(1202, 531);
+            this.btn_refresh.Location = new System.Drawing.Point(1554, 674);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(75, 23);
             this.btn_refresh.TabIndex = 16;
@@ -751,7 +751,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1604, 880);
+            this.ClientSize = new System.Drawing.Size(1668, 863);
             this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.panel12);
             this.Controls.Add(this.dgv_todayAppointments);

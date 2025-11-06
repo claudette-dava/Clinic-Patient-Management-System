@@ -77,6 +77,101 @@ namespace Clinic___Patient_Management_System.MODEL
                 }
             }
         }
+        public List<Patient> GetPatientsForDoctor(int doctorID)
+        {
+            var patients = new List<Patient>();
+
+            using (SqlConnection con = new SqlConnection(_connection))
+            {
+                con.Open();
+
+
+                string query = @"
+            SELECT DISTINCT p.PatientID, p.Name, p.Age, p.Address, p.Sex, p.ContactNo, p.Email
+            FROM tbl_patientRecord p
+            INNER JOIN tbl_appointment a ON p.PatientID = a.PatientID
+            WHERE a.DoctorID = @DoctorID";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@DoctorID", doctorID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            patients.Add(new Patient
+                            {
+                                PatientID = (int)reader["PatientID"],
+                                Name = reader["Name"].ToString(),
+                                Age = reader["Age"].ToString(),
+                                Address = reader["Address"].ToString(),
+                                Sex = reader["Sex"].ToString(),
+                                ContactNo = reader["ContactNo"].ToString(),
+                                Email = reader["Email"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return patients;
+        }
+        public List<Patient> SearchPatients(string keyword, string role, int doctorId)
+        {
+            var patients = new List<Patient>();
+
+            using (SqlConnection con = new SqlConnection(_connection))
+            {
+                con.Open();
+
+                
+                string query = @"
+            SELECT DISTINCT p.PatientID, p.Name, p.Age, p.Address, p.Sex, p.ContactNo, p.Email
+            FROM tbl_patientRecord p
+            LEFT JOIN tbl_appointment a ON p.PatientID = a.PatientID";
+             
+                if (role == "Doctor")
+                {
+                    query += " WHERE a.DoctorID = @DoctorID ";
+                    if (!string.IsNullOrWhiteSpace(keyword))
+                        query += " AND p.Name LIKE @Keyword ";
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(keyword))
+                        query += " WHERE p.Name LIKE @Keyword ";
+                }              
+                query += " ORDER BY p.Name ASC";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    if (role == "Doctor")
+                        cmd.Parameters.AddWithValue("@DoctorID", doctorId);
+                    if (!string.IsNullOrWhiteSpace(keyword))
+                        cmd.Parameters.AddWithValue("@Keyword", $"%{keyword}%");
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        patients.Add(new Patient
+                        {
+                            PatientID = (int)reader["PatientID"],
+                            Name = reader["Name"].ToString(),
+                            Age = reader["Age"].ToString(),
+                            Address = reader["Address"].ToString(),
+                            Sex = reader["Sex"].ToString(),
+                            ContactNo = reader["ContactNo"].ToString(),
+                            Email = reader["Email"].ToString()
+                        });
+                    }
+                }
+            }
+
+            return patients;
+        }
+
 
 
     }

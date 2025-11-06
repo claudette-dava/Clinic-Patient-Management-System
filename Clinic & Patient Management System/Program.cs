@@ -18,6 +18,10 @@ namespace Clinic___Patient_Management_System
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogIn());
+            Application.ApplicationExit += (s, e) =>
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            };
 
         }
     }
